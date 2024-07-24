@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Request</title>
+    <script type="module">
+        import { sendPaymentRequest } from './api.js'; // api.js를 모듈로 가져옵니다.
+
+        async function handlePaymentRequest() {
+            const userId = 'user-' + Date.now(); // 예를 위한 사용자 ID 생성
+            const paymentDetails = {
+                userId: userId,
+                amount: 1000, // 예를 위한 금액
+                description: 'Test Payment'
+            };
+
+            const result = await sendPaymentRequest(paymentDetails);
+
+            if (result.success) {
+                alert('Payment request sent successfully!');
+            } else {
+                alert('Failed to send payment request: ' + result.message);
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="handlePaymentRequest()">Make Payment</button>
+</body>
+</html>
